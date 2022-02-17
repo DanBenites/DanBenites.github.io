@@ -17,6 +17,9 @@
 		ga('send', 'pageview');
 		</script>
 		<!-- End Google Analytics -->
+
+		<script src="https://www.youtube.com/iframe_api"></script>
+
 		<title>Google Analytics</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -61,7 +64,9 @@
 			<article id="videoGA" class="wrapper style2">
 				<div class="container">
 					<h2>Assista a esse vídeo para saber mais sobre Google Analytics</h2>
-					<iframe id="15" onclick="sendVideoHits('Getting started with the Google Analytics 4 Property') " width="762" height="428" src="https://www.youtube.com/embed/S708NFbvTXI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>	
+					<div class="module module-home-video">
+						<div id="video"></div>
+				  	</div>	
 				</div>
 			</article>
 
@@ -135,15 +140,35 @@
 					});
 				}
 
-				function sendVideoHits(label){
+				function sendVideosHits(label){
 					ga('send', {
 					  hitType: 'event',
-					  eventCategory: 'video',
+					  eventCategory: 'Video',
 					  eventAction: 'play',
 					  eventLabel: label
 					});
 				}
+			</script>
 
+			<script>
+				var player, playing = false;
+				function onYouTubeIframeAPIReady() {
+					player = new YT.Player('video', {
+						height: '315',
+						width: '560',
+						videoId: 'S708NFbvTXI',
+						events: {
+							'onStateChange': onPlayerStateChange
+						}
+					});
+				}
+
+				function onPlayerStateChange(event) {
+					if (!playing) {
+						sendVideosHits('Getting started with the Google Analytics 4 Property')
+						playing = true;
+					}
+				}
 			</script>
 
 	</body>
