@@ -61,7 +61,7 @@
 			<article id="videoGA" class="wrapper style2">
 				<div class="container">
 					<h2>Assista a esse vídeo para saber mais sobre Google Analytics</h2>
-					<iframe width="762" height="428" src="https://www.youtube.com/embed/S708NFbvTXI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>	
+					<iframe id="15" onclick="sendVideoHits('Getting started with the Google Analytics 4 Property') " width="762" height="428" src="https://www.youtube.com/embed/S708NFbvTXI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>	
 				</div>
 			</article>
 
@@ -132,6 +132,15 @@
 					  eventCategory: 'signup form',
 					  eventAction: 'submit',
 					  eventLabel: "contact"
+					});
+				}
+
+				function sendVideoHits(label){
+					ga('send', {
+					  hitType: 'event',
+					  eventCategory: 'video',
+					  eventAction: 'play',
+					  eventLabel: label
 					});
 				}
 
